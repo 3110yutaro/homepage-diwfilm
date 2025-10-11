@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### **README.md 更新内容**
 
-## Getting Started
+**1. プロジェクト概要と設計思想**
 
-First, run the development server:
+このプロジェクトは、Next.jsの`create-next-app`で初期化されたWebアプリケーションです。当初はシングルページアプリケーション（SPA）として構成されていましたが、よりSEOに強く、拡張性の高いマルチページアプリケーション（MPA）へとリファクタリングされました。
+
+主な設計思想は以下の通りです。
+
+*   **コンポーネント指向**: 各UI要素やページセクションを独立したコンポーネントとして設計・実装することで、再利用性、保守性、およびテストの容易性を高めています。
+*   **Next.js App Routerの活用**: Next.jsのApp Routerの規約に従い、URLパスとファイルシステムを対応させることで、直感的かつスケーラブルなルーティングを実現しています。これにより、新しいページの追加や既存ページの管理が容易になります。
+*   **シングルパージからマルチページへの移行**: 現在のアプリケーションは、プロダクト、動画、問い合わせページなどのページを、シングルページではなく`/products`や`/about`のようなディレクトリ構造を持つマルチページとして実装しています。
+
+**2. 実装された主な機能と変更点**
+
+*   **マルチページ構造の導入**: 以下の独立したページが作成されました。
+    *   `/products`: プロダクトページ
+    *   `/videos`: 動画ページ
+    *   `/about`: About Meページ
+    *   `/contact`: 問い合わせページ
+*   **トップページ(`src/app/page.tsx`)の簡素化**: トップページは主にヒーローセクション（`Hero`コンポーネント）のみを表示するように変更されました。
+*   **共通レイアウトコンポーネント**: `src/app/layout.tsx`で`Header`と`Footer`コンポーネントをグローバルレイアウトとして統合することで、すべてのページで共通のヘッダーとフッターが表示されるようになりました。
+*   **ナビゲーションの更新**: `src/app/components/layout/Header.tsx`内のナビゲーションリンクをNext.jsの`<Link>`コンポーネントに更新し、ページ内スクロールからページ間の遷移へ変更しました。
+*   **Heroページの機能拡張とデザイン調整**:
+    *   新しいメインタイトルと詳細な説明文が追加されました。
+    *   2枚の画像を追加し、左右に配置する2カラムレイアウトが導入されました。
+    *   右側の画像には、右斜め回転と上部・下部からのフェードアウト効果が適用されています。
+    *   左右の画像幅の比率は3:7に調整され、右側の画像は高さを拡張して、よりダイナミックな表示を実現しました。
+    *   `next.config.ts`に外部画像ドメインの許可設定が追加されました。
+*   **画像アセット管理**: `public/assets`フォルダが作成され、静的画像の格納場所として推奨されています。
+
+**3. 使用されている技術スタックと主要ライブラリ**
+
+*   **Next.js**: ReactをベースにしたフルスタックWebアプリケーションフレームワーク。
+    *   **App Router**: ファイルシステムベースのルーティングシステムを採用し、サーバーコンポーネントやデータフェッチの柔軟性を提供します。
+    *   **Imageコンポーネント**: 画像の最適化（リサイズ、遅延読み込みなど）を自動で行い、パフォーマンスを向上させます。
+*   **React**: ユーザーインターフェース構築のためのJavaScriptライブラリ。
+*   **TypeScript**: JavaScriptに静的型チェックを追加し、開発の堅牢性を高めます。
+*   **Tailwind CSS**: ユーティリティファーストのCSSフレームワーク。高速なUI開発とコンポーネントベースのスタイリングに適しています。
+*   **Lucide React**: 軽量でカスタマイズ可能なアイコンセットを提供します。
+*   **Next.js Fonts (`Geist`, `Noto Sans JP`, `Inter`)**: フォントの最適化と読み込みを自動で行い、パフォーマンスとタイポグラフィの品質を向上させます。
+
+**4. フォルダ構造の概略**
+
+```
+├── public/                # 静的ファイル（画像、フォントなど）
+│   └── assets/            # 追加された画像アセット用ディレクトリ
+│       ├── hero_yohji.png
+│       └── hero_yohji2.png
+├── src/
+│   ├── app/               # Next.js App Routerのルート
+│   │   ├── layout.tsx     # グローバルレイアウト (Header, Footerを含む)
+│   │   ├── page.tsx       # ホームページ (Heroコンポーネントのみ)
+│   │   ├── globals.css    # グローバルCSS (Tailwindの設定、カスタムスタイル)
+│   │   ├── about/         # Aboutページ用ルート
+│   │   │   └── page.tsx
+│   │   ├── contact/       # お問い合わせページ用ルート
+│   │   │   └── page.tsx
+│   │   ├── products/      # プロダクトページ用ルート
+│   │   │   └── page.tsx
+│   │   ├── videos/        # 動画ページ用ルート
+│   │   │   └── page.tsx
+│   │   └── components/
+│   │       ├── layout/    # レイアウト用コンポーネント
+│   │       │   ├── Header.tsx
+│   │       │   └── Footer.tsx
+│   │       └── sections/  # ページセクション用コンポーネント
+│   │           ├── Hero.tsx
+│   │           ├── About.tsx
+│   │           ├── Products.tsx
+│   │           ├── Videos.tsx
+│   │           └── Contact.tsx
+│   ├── components/        # UIライブラリや共有コンポーネントなど
+│   │   └── ui/            # Shadcn UI (button, cardなど)
+│   ├── lib/
+│   └── types/
+├── next.config.ts         # Next.js の設定ファイル (画像ドメイン設定など)
+├── package.json           # プロジェクトの依存関係とスクリプト
+└── README.md              # このドキュメント
+```
+
+**5. 開発環境の開始**
+
+開発サーバーを起動するには、以下のコマンドを実行してください：
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開き、結果を確認してください。
