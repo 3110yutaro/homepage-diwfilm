@@ -9,8 +9,8 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const menuItems = [
-    { name: "Service", href: "/products" },
     { name: "About Us", href: "/about" },
+    { name: "Service", href: "/products" },
     { name: "Contact", href: "/contact" },
   ]
 

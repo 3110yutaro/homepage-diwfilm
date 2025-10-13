@@ -35,29 +35,6 @@ export function Contact() {
     })
   }
 
-  const contactInfo = [
-    {
-      title: "メールアドレス",
-      content: "info@yohji-international.com",
-      icon: "✉️"
-    },
-    {
-      title: "電話番号",
-      content: "03-1234-5678",
-      icon: "📞"
-    },
-    {
-      title: "住所",
-      content: "東京都渋谷区神南1-2-3",
-      icon: "📍"
-    },
-    {
-      title: "営業時間",
-      content: "平日 9:00 - 18:00",
-      icon: "🕐"
-    }
-  ]
-
   return (
     <section id="contact" className="py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,10 +50,10 @@ export function Contact() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="max-w-2xl mx-auto">
             {/* お問い合わせフォーム */}
             <Card className="p-8">
-              <h3 className="text-2xl font-semibold mb-6 text-primary">
+              <h3 className="text-2xl font-semibold mb-6 text-primary text-center">
                 お問い合わせフォーム
               </h3>
 
@@ -174,44 +151,6 @@ export function Contact() {
                 </Button>
               </form>
             </Card>
-
-            {/* 連絡先情報 */}
-            <div className="space-y-8">
-              <Card className="p-8">
-                <h3 className="text-2xl font-semibold mb-6 text-primary">
-                  連絡先情報
-                </h3>
-
-                <div className="space-y-6">
-                  {contactInfo.map((info, index) => (
-                    <div key={index} className="flex items-start space-x-4">
-                      <div className="text-2xl">{info.icon}</div>
-                      <div>
-                        <h4 className="font-semibold text-primary">{info.title}</h4>
-                        <p className="text-muted-foreground">{info.content}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-
-              {/* 地図プレースホルダー */}
-              <Card className="p-8">
-                <h3 className="text-xl font-semibold mb-4 text-primary">
-                  アクセス
-                </h3>
-                <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                  <div className="text-center text-muted-foreground">
-                    <div className="text-4xl mb-2">🗺️</div>
-                    <p>地図がここに表示されます</p>
-                    <p className="text-sm mt-2">
-                      住所: 東京都渋谷区神南1-2-3<br />
-                      最寄り駅: 渋谷駅から徒歩5分
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            </div>
           </div>
         </div>
       </div>
