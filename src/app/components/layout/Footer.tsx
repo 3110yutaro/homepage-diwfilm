@@ -52,9 +52,9 @@ export function Footer() {
             <div className="flex space-x-4">
               {[
                 { name: "Twitter", href: "#" },
-                { name: "Facebook", href: "#" },
-                { name: "Instagram", href: "#" },
-                { name: "YouTube", href: "#" },
+                { name: "Instagram", href: "https://www.instagram.com/yohji_japan/" },
+                { name: "YouTube", href: "https://www.youtube.com/@yohji_kokusaikouryu" },
+                { name: "TikTok", href: "https://www.tiktok.com/@yoji_japan" },
               ].map((social) => (
                 <a
                   key={social.name}
