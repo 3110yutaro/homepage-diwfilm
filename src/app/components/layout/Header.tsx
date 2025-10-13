@@ -9,10 +9,9 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const menuItems = [
-    { name: "プロダクト", href: "/products" },
-    { name: "動画", href: "/videos" },
-    { name: "About Me", href: "/about" },
-    { name: "問い合わせ", href: "/contact" },
+    { name: "Service", href: "/products" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact", href: "/contact" },
   ]
 
   return (
@@ -22,7 +21,7 @@ export function Header() {
           {/* ロゴ */}
           <Link href="/" className="flex items-center">
             <h1 className="text-2xl font-bold text-gradient">
-              ヨージの国際交流
+              DIW FILM inc.
             </h1>
           </Link>
 
