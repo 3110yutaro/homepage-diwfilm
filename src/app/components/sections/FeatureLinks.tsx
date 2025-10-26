@@ -36,7 +36,7 @@ export function FeatureLinks() {
                 objectFit="cover"
                 className="transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-primary/30 group-hover:bg-primary/40 transition-colors duration-300" />
             </div>
             <div className="absolute bottom-0 left-0 p-6">
               <h3 className="text-2xl font-semibold leading-6 text-white">{feature.name}</h3>

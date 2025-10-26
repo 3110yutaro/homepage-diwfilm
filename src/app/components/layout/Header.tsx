@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
@@ -9,20 +10,31 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const menuItems = [
-    { name: "Service", href: "/products" },
     { name: "About Us", href: "/about" },
+    { name: "Service", href: "/products" },
     { name: "Contact", href: "/contact" },
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* ロゴ */}
-          <Link href="/" className="flex items-center">
-            <h1 className="text-2xl font-bold text-gradient">
-              DIW FILM inc.
-            </h1>
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="/assets/rotation_animation_logo.png"
+              alt="DIW FILM Rotating Logo"
+              width={40}
+              height={40}
+              className="h-10 w-auto"
+            />
+            <Image
+              src="/assets/diwfilmlogo02.png"
+              alt="DIW FILM inc. Logo"
+              width={150}
+              height={50}
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* デスクトップナビゲーション */}
