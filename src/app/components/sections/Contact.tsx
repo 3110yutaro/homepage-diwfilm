@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { SubmitButton } from "@/app/components/ui/SubmitButton"
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -12,6 +12,9 @@ export function Contact() {
     subject: "",
     message: ""
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -21,18 +24,39 @@ export function Contact() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // 実際のフォーム送信処理を実装
-    console.log("Form submitted:", formData)
-    alert("お問い合わせありがとうございます。担当者よりご連絡いたします。")
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      subject: "",
-      message: ""
-    })
+    setIsSubmitting(true)
+    setError(null)
+    setIsSuccess(false)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('サーバーエラーが発生しました。しばらくしてから再度お試しください。')
+      }
+
+      await response.json()
+      setIsSuccess(true)
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        subject: "",
+        message: ""
+      })
+    } catch (error: any) {
+      setError(error.message || '予期せぬエラーが発生しました。')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -57,99 +81,112 @@ export function Contact() {
                 お問い合わせフォーム
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {isSuccess ? (
+                <div className="text-center p-4 bg-green-100 text-green-700 rounded-md">
+                  <p className="font-semibold">お問い合わせありがとうございます！</p>
+                  <p>メッセージは正常に送信されました。担当者よりご連絡いたします。</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium mb-2">
+                        お名前 <span className="text-destructive">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+                        placeholder="山田 太郎"
+                        disabled={isSubmitting}
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium mb-2">
+                        メールアドレス <span className="text-destructive">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+                        placeholder="example@company.com"
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
-                      お名前 <span className="text-destructive">*</span>
+                    <label htmlFor="company" className="block text-sm font-medium mb-2">
+                      会社名
                     </label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="company"
+                      name="company"
+                      value={formData.company}
                       onChange={handleInputChange}
-                      required
                       className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
-                      placeholder="山田 太郎"
+                      placeholder="株式会社サンプル"
+                      disabled={isSubmitting}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      メールアドレス <span className="text-destructive">*</span>
+                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                      お問い合わせ種別 <span className="text-destructive">*</span>
                     </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
+                    <select
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
                       onChange={handleInputChange}
                       required
                       className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
-                      placeholder="example@company.com"
+                      disabled={isSubmitting}
+                    >
+                      <option value="">選択してください</option>
+                      <option value="サービスについて">サービスについて</option>
+                      <option value="料金について">料金について</option>
+                      <option value="導入相談">導入相談</option>
+                      <option value="その他">その他</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                      お問い合わせ内容 <span className="text-destructive">*</span>
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      rows={5}
+                      className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+                      placeholder="お問い合わせ内容を詳しくお書きください。"
+                      disabled={isSubmitting}
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium mb-2">
-                    会社名
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
-                    placeholder="株式会社サンプル"
-                  />
-                </div>
+                  {error && (
+                    <div className="text-center p-2 bg-red-100 text-destructive rounded-md">
+                      <p>{error}</p>
+                    </div>
+                  )}
 
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                    お問い合わせ種別 <span className="text-destructive">*</span>
-                  </label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
-                  >
-                    <option value="">選択してください</option>
-                    <option value="サービスについて">サービスについて</option>
-                    <option value="料金について">料金について</option>
-                    <option value="導入相談">導入相談</option>
-                    <option value="その他">その他</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    お問い合わせ内容 <span className="text-destructive">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={5}
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring resize-none"
-                    placeholder="お問い合わせ内容を詳しくお書きください。"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  className="w-full bg-gradient-purple hover:opacity-90 text-white font-semibold py-3"
-                >
-                  お問い合わせを送信する
-                </Button>
-              </form>
+                  <SubmitButton isSubmitting={isSubmitting} />
+                </form>
+              )}
             </Card>
           </div>
         </div>
