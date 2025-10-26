@@ -20,7 +20,14 @@ export function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* ロゴ */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="/assets/rotation_animation_logo.png"
+              alt="DIW FILM Rotating Logo"
+              width={40}
+              height={40}
+              className="h-10 w-auto"
+            />
             <Image
               src="/assets/diwfilmlogo02.png"
               alt="DIW FILM inc. Logo"
