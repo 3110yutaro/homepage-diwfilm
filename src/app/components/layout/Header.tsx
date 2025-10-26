@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
@@ -15,14 +16,18 @@ export function Header() {
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* ロゴ */}
           <Link href="/" className="flex items-center">
-            <h1 className="text-2xl font-bold text-gradient">
-              DIW FILM inc.
-            </h1>
+            <Image
+              src="/assets/diwfilmlogo02.png"
+              alt="DIW FILM inc. Logo"
+              width={150}
+              height={50}
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* デスクトップナビゲーション */}

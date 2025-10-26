@@ -49,7 +49,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
           asChild
           className="w-full mt-auto bg-primary hover:bg-primary/90"
         >
-          <a href={`#service-detail-${index}`}>詳細を見る</a>
+          <a href={`/products#service-detail-${index}`}>詳細を見る</a>
         </Button>
       </div>
     </Card>
