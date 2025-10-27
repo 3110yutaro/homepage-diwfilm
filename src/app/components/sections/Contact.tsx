@@ -52,8 +52,12 @@ export function Contact() {
         subject: "",
         message: ""
       })
-    } catch (error: any) {
-      setError(error.message || '予期せぬエラーが発生しました。')
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message || '予期せぬエラーが発生しました。')
+      } else {
+        setError('予期せぬエラーが発生しました。')
+      }
     } finally {
       setIsSubmitting(false)
     }
