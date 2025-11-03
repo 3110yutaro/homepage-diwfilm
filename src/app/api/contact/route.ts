@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     // Resendを使ってメールを送信します。
     const data = await resend.emails.send({
       from: 'DIWFilm Website <noreply@diwfilm.com>', // 送信元メールアドレス
-      to: ['3110yutaro@gmail.com'], // 送信先メールアドレス（テスト用）
+      to: ['info@diwfilm.com'], // 送信先メールアドレス
       subject: `【DIWFilm】ウェブサイトからのお問い合わせ: ${subject}`, // メールの件名
       react: ContactTemplate({ name, email, company, subject, message }) // メール本文のテンプレート
     })
