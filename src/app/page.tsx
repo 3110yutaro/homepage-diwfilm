@@ -25,7 +25,7 @@ export default function Home() {
       <RotationLogo onAnimationComplete={handleAnimationComplete} />
       <div className={showContent ? "animate-fade-in" : "opacity-0"}>
         <BackgroundBlobs />
-        <Hero />
+        <Hero showContent={showContent} />
         <section id="about-us" {...animatedAbout}>
           <About />
         </section>

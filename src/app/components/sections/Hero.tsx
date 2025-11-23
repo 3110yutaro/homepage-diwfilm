@@ -3,6 +3,10 @@ import Link from 'next/link';
 import { RotatingVisionText } from '@/app/components/animations/RotatingVisionText';
 import { FlowingText } from '@/app/components/animations/FlowingText';
 
+interface HeroProps {
+  showContent: boolean;
+}
+
 const features = [
   {
     name: 'About Us',
@@ -24,7 +28,9 @@ const features = [
   },
 ];
 
-export function Hero() {
+export function Hero({ showContent }: HeroProps) {
+  const baseDelay = showContent ? 1.7 : 0; // RotationLogoのアニメーション完了時間（1.7秒）
+
   return (
     <section className="relative bg-transparent">
       <div className="relative z-10 py-36 sm:py-48">
@@ -36,23 +42,23 @@ export function Hero() {
             <FlowingText
               text="Our Vision"
               className="text-base font-semibold leading-7 text-cyan-600"
-              initialDelay={0.2}
+              initialDelay={baseDelay + 0.2}
             />
             <FlowingText
               text="限りなく純粋な、映像を。"
               className="mt-2 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl"
-              initialDelay={0.5}
+              initialDelay={baseDelay + 0.5}
             />
             <div className="mt-6">
               <FlowingText
                 text="DIW Film."
                 className="text-lg leading-8 text-slate-600"
-                initialDelay={1.2}
+                initialDelay={baseDelay + 1.2}
               />
               <FlowingText
                 text="De-Ionized Waterのように、澄んだ感動を。"
                 className="text-lg leading-8 text-slate-600"
-                initialDelay={1.5}
+                initialDelay={baseDelay + 1.5}
               />
             </div>
           </div>
