@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { RotatingVisionText } from '@/app/components/animations/RotatingVisionText';
 
 const features = [
   {
@@ -25,9 +26,12 @@ const features = [
 export function Hero() {
   return (
     <section className="relative bg-transparent">
-      <div className="relative z-10 py-20 sm:py-32">
+      <div className="relative z-10 py-36 sm:py-48">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl relative">
+            <div className="absolute -top-32 -left-4 hidden md:block">
+              <RotatingVisionText />
+            </div>
             <h2 className="text-base font-semibold leading-7 text-cyan-600">
               Our Vision
             </h2>
