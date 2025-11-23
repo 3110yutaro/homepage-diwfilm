@@ -86,6 +86,10 @@ module.exports = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         blob: "blob 7s infinite",
@@ -95,6 +99,7 @@ module.exports = {
         "pop-and-spin": "pop-and-spin 0.8s ease-out forwards",
         "fade-out": "fade-out 0.5s ease-out forwards",
         "fade-in": "fade-in 1s ease-out forwards",
+        "fade-in-up": "fade-in-up 0.5s ease-out forwards",
       },
     },
   },

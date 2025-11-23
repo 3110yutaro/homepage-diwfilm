@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { RotatingVisionText } from '@/app/components/animations/RotatingVisionText';
+import { FlowingText } from '@/app/components/animations/FlowingText';
 
 const features = [
   {
@@ -32,17 +33,28 @@ export function Hero() {
             <div className="absolute -top-32 -left-4 hidden md:block">
               <RotatingVisionText />
             </div>
-            <h2 className="text-base font-semibold leading-7 text-cyan-600">
-              Our Vision
-            </h2>
-            <p className="mt-2 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-              限りなく純粋な、映像を。
-            </p>
-            <p className="mt-6 text-lg leading-8 text-slate-600">
-              DIW Film.
-              <br />
-              <span className="text-cyan-600 font-medium">De-Ionized Water</span>のように、澄んだ感動を。
-            </p>
+            <FlowingText
+              text="Our Vision"
+              className="text-base font-semibold leading-7 text-cyan-600"
+              initialDelay={0.2}
+            />
+            <FlowingText
+              text="限りなく純粋な、映像を。"
+              className="mt-2 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl"
+              initialDelay={0.5}
+            />
+            <div className="mt-6">
+              <FlowingText
+                text="DIW Film."
+                className="text-lg leading-8 text-slate-600"
+                initialDelay={1.2}
+              />
+              <FlowingText
+                text="De-Ionized Waterのように、澄んだ感動を。"
+                className="text-lg leading-8 text-slate-600"
+                initialDelay={1.5}
+              />
+            </div>
           </div>
         </div>
       </div>
