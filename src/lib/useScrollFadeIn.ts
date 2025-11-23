@@ -47,7 +47,7 @@ export const useScrollFadeIn = (
     if (current) {
       observer = new IntersectionObserver(onScroll, {
         threshold: 0,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px 0px 0px'
       });
       observer.observe(current);
     }

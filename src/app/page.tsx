@@ -23,28 +23,26 @@ export default function Home() {
   return (
     <main className="relative">
       <RotationLogo onAnimationComplete={handleAnimationComplete} />
-      {showContent && (
-        <div className="animate-fade-in">
-          <BackgroundBlobs />
-          <Hero />
-          <section id="about-us" {...animatedAbout}>
-            <About />
-          </section>
-          <section id="services" {...animatedServices} className="py-12">
-            <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 relative z-10">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-12">サービス</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {services.map((service, index) => (
-                  <ServiceCard key={index} service={service} index={index} />
-                ))}
-              </div>
+      <div className={showContent ? "animate-fade-in" : "opacity-0"}>
+        <BackgroundBlobs />
+        <Hero />
+        <section id="about-us" {...animatedAbout}>
+          <About />
+        </section>
+        <section id="services" {...animatedServices} className="py-12">
+          <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-12">サービス</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {services.map((service, index) => (
+                <ServiceCard key={index} service={service} index={index} />
+              ))}
             </div>
-          </section>
-          <section id="contact" {...animatedContact}>
-            <Contact />
-          </section>
-        </div>
-      )}
+          </div>
+        </section>
+        <section id="contact" {...animatedContact}>
+          <Contact />
+        </section>
+      </div>
     </main>
   );
 }
