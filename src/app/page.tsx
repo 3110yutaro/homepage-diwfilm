@@ -7,6 +7,7 @@ import { Contact } from "@/app/components/sections/Contact";
 import { useScrollFadeIn } from "@/lib/useScrollFadeIn";
 import { services } from "@/lib/services";
 import { RotationLogo } from "@/app/components/animations/RotationLogo";
+import { BackgroundBlobs } from "@/app/components/animations/BackgroundBlobs";
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
@@ -20,15 +21,16 @@ export default function Home() {
   const animatedContact = useScrollFadeIn('up', 1, 0.4);
 
   return (
-    <main>
+    <main className="relative">
       <RotationLogo onAnimationComplete={handleAnimationComplete} />
       <div className={showContent ? "animate-fade-in" : "opacity-0"}>
+        <BackgroundBlobs />
         <Hero />
         <section id="about-us" {...animatedAbout}>
           <About />
         </section>
-        <section id="services" {...animatedServices}>
-          <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <section id="services" {...animatedServices} className="py-12">
+          <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-12">サービス</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {services.map((service, index) => (

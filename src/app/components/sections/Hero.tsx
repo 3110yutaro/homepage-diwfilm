@@ -24,20 +24,20 @@ const features = [
 
 export function Hero() {
   return (
-    <section className="relative bg-background">
-      <div className="py-20 sm:py-32">
+    <section className="relative bg-transparent">
+      <div className="relative z-10 py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <h2 className="text-base font-semibold leading-7 text-primary">
+            <h2 className="text-base font-semibold leading-7 text-cyan-600">
               Our Vision
             </h2>
-            <p className="mt-2 text-4xl font-bold tracking-tight text-primary sm:text-5xl">
+            <p className="mt-2 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
               限りなく純粋な、映像を。
             </p>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            <p className="mt-6 text-lg leading-8 text-slate-600">
               DIW Film.
               <br />
-              De-Ionized Waterのように、澄んだ感動を。
+              <span className="text-cyan-600 font-medium">De-Ionized Water</span>のように、澄んだ感動を。
             </p>
           </div>
         </div>
