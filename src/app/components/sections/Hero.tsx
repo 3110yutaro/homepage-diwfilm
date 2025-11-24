@@ -89,7 +89,7 @@ export function Hero({ showContent }: HeroProps) {
           </motion.div>
           
           <motion.h1
-            className="font-black text-7xl md:text-9xl leading-[0.85] text-black mb-8 tracking-tighter"
+            className="font-black text-6xl md:text-8xl leading-[0.85] text-black mb-8 tracking-tighter"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: baseDelay + 0.4, type: "spring", stiffness: 100 }}
@@ -184,7 +184,7 @@ export function Hero({ showContent }: HeroProps) {
                    className="absolute bottom-0 -left-10 w-48 h-24 bg-pop-blue border-4 border-black rounded-full flex items-center justify-center z-20 shadow-neo transform -rotate-12"
                    whileHover={{ scale: 1.1, rotate: -5 }}
                  >
-                    <span className="font-black text-white text-2xl">EST. 2024</span>
+                    <span className="font-black text-white text-2xl">since 2022</span>
                  </motion.div>
 
                  {/* Sticker Elements */}
