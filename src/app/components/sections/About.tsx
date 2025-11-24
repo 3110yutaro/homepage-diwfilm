@@ -1,33 +1,48 @@
 "use client";
 
 import Image from "next/image";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { Zap, BarChart3, Video, Puzzle, Star } from "lucide-react";
 
 export function About() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [-5, 5]);
+
   const strengths = [
     {
-      title: "ワンストップソリューション",
+      title: "ワンストップ\nソリューション",
       description: "SNS戦略立案から映像制作、編集、機材レンタルまで、コンテンツ制作の全工程をワンストップでサポート。一貫性のある高品質なクリエイティブを提供します。",
-      color: "bg-vivid-yellow",
-      rotate: -1,
+      color: "bg-pop-yellow",
+      rotate: -2,
+      icon: <Zap size={48} strokeWidth={1.5} />
     },
     {
-      title: "データに基づく戦略提案",
+      title: "データに基づく\n戦略提案",
       description: "市場調査やデータ分析に基づき、お客様のビジネス目標達成に直結する戦略を策定。感覚だけに頼らない、成果の出るアプローチを重視します。",
-      color: "bg-vivid-pink",
-      rotate: 1,
+      color: "bg-pop-pink",
+      rotate: 2,
+      icon: <BarChart3 size={48} strokeWidth={1.5} />
     },
     {
-      title: "プロフェッショナルな制作体制",
+      title: "プロフェッショナルな\n制作体制",
       description: "経験豊富な専門スタッフと最新の撮影・編集機材を駆使し、企画から納品までハイクオリティな映像制作を実現します。",
-      color: "bg-vivid-blue",
+      color: "bg-pop-blue",
       rotate: -1,
+      icon: <Video size={48} strokeWidth={1.5} />
     },
     {
-      title: "柔軟なカスタマイズ対応",
+      title: "柔軟な\nカスタマイズ対応",
       description: "お客様一人ひとりの課題やご予算に合わせて、サービス内容を柔軟にカスタマイズ。最適なソリューションをオーダーメイドでご提案します。",
-      color: "bg-vivid-purple",
-      rotate: 1,
+      color: "bg-pop-green",
+      rotate: 3,
+      icon: <Puzzle size={48} strokeWidth={1.5} />
     }
   ];
 
@@ -56,10 +71,17 @@ export function About() {
   };
 
   return (
-    <section id="about" className="relative py-20 md:py-32 overflow-hidden">
+    <section ref={containerRef} id="about" className="relative py-32 overflow-hidden bg-white">
       {/* 背景装飾 */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-vivid-yellow rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-vivid-blue rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
+      
+      {/* Parallax Background Text */}
+      <motion.div 
+        style={{ y, rotate }}
+        className="absolute top-1/4 -left-20 text-[20vw] font-black text-slate-100 pointer-events-none select-none leading-none z-0"
+      >
+        ABOUT
+      </motion.div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -67,46 +89,57 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-24"
         >
-          <h2 className="text-4xl md:text-6xl font-black font-montserrat text-transparent bg-clip-text bg-gradient-to-r from-vivid-blue to-vivid-purple mb-6 tracking-tighter drop-shadow-sm">
-            About Us
-          </h2>
-          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-medium">
+          <div className="inline-block relative">
+            <h2 className="text-5xl md:text-7xl font-black font-montserrat text-black mb-6 tracking-tighter relative z-10">
+              About Us
+            </h2>
+            <div className="absolute -bottom-2 left-0 w-full h-4 bg-pop-yellow -rotate-2 z-0"></div>
+          </div>
+          <p className="text-lg md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold mt-8 leading-relaxed">
             私たちは、デジタル時代のコンテンツパートナーとして、<br className="hidden md:block" />
-            お客様の「伝えたい」想いをカタチにし、ビジネスの成長を加速させるお手伝いをします。
+            お客様の「伝えたい」想いをカタチにし、<br className="hidden md:block" />
+            ビジネスの成長を加速させるお手伝いをします。
           </p>
         </motion.div>
 
         {/* 代表挨拶 */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -50, rotate: -2 }}
+          whileInView={{ opacity: 1, x: 0, rotate: -2 }}
           viewport={{ once: true }}
+          whileHover={{ rotate: 0, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 50 }}
-          className="mb-20 p-8 md:p-12 bg-white border-4 border-black shadow-pop rounded-3xl relative overflow-hidden"
+          className="mb-24 p-8 md:p-12 bg-white border-4 border-black shadow-neo-lg rounded-[2rem] relative overflow-hidden max-w-5xl mx-auto"
         >
-          <div className="absolute top-0 right-0 w-32 h-32 bg-vivid-yellow rounded-bl-full opacity-20" />
+          <div className="absolute top-0 right-0 w-40 h-40 bg-pop-yellow rounded-bl-full opacity-100 border-l-4 border-b-4 border-black" />
           
-          <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 relative z-10">
-            <div className="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-black overflow-hidden flex-shrink-0 mx-auto md:mx-0 shadow-pop-hover bg-vivid-blue">
-              <Image
-                src="/assets/kajiwara_hideo_icon.png"
-                alt="代表取締役 梶原英生"
-                width={192}
-                height={192}
-                className="w-full h-full object-cover"
-              />
+          <div className="flex flex-col md:flex-row items-start gap-8 md:gap-16 relative z-10">
+            <div className="relative mx-auto md:mx-0">
+                <div className="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-black overflow-hidden shadow-pop bg-pop-blue relative z-10">
+                <Image
+                    src="/assets/kajiwara_hideo_icon.png"
+                    alt="代表取締役 梶原英生"
+                    width={256}
+                    height={256}
+                    className="w-full h-full object-cover"
+                />
+                </div>
+                <div className="absolute -bottom-4 -right-4 bg-white border-4 border-black px-4 py-1 rounded-full transform rotate-6 z-20 shadow-sm">
+                    <span className="font-black text-sm">CEO</span>
+                </div>
             </div>
+            
             <div className="flex-grow text-center md:text-left">
-              <h3 className="text-2xl md:text-3xl font-black mb-6 text-slate-900">代表挨拶</h3>
-              <div className="text-slate-600 leading-relaxed whitespace-pre-line space-y-4 font-medium">
+              <h3 className="text-3xl md:text-4xl font-black mb-8 text-black inline-block border-b-4 border-pop-blue pb-2">代表挨拶</h3>
+              <div className="text-slate-700 leading-relaxed whitespace-pre-line space-y-6 font-medium text-lg">
                 <p>私たちのホームページに訪れていただき、誠にありがとうございます。<br />代表の梶原英生です。</p>
                 <p>現代は、誰もが発信者となり、想いを世界中に届けられる素晴らしい時代です。しかし、溢れる情報の中で本当に価値あるメッセージを届け、人の心を動かすことは容易ではありません。</p>
                 <p>私たちデューフィルム株式会社は、そんなデジタル時代におけるお客様の最高のパートナーとなるべく創業いたしました。私たちの使命は、お客様一人ひとりが胸に秘めた「伝えたい」という純粋な想いを、プロフェッショナルな技術とクリエイティビティによって、最も伝わる「カタチ」にすることです。</p>
                 <p>SNSの戦略立案から、心に響く映像制作、細部までこだわり抜いた動画編集まで。私たちはデータに基づく緻密な戦略と、長年培ってきた表現力で、お客様のビジネスがまだ見ぬステージへと飛躍するお手伝いをいたします。</p>
                 <p>お客様の物語に深く寄り添い、共に悩み、共に喜びを分かち合える。そんな血の通ったパートナーシップを、私たちは何よりも大切にしています。</p>
-                <p className="font-bold text-vivid-blue mt-4">このウェブサイトが、皆様との素晴らしい出会いのきっかけとなることを心より願っております。</p>
+                <p className="font-bold text-pop-blue text-xl mt-6 bg-pop-blue/10 p-4 rounded-xl border-2 border-pop-blue border-dashed transform -rotate-1">このウェブサイトが、皆様との素晴らしい出会いのきっかけとなることを心より願っております。</p>
               </div>
             </div>
           </div>
@@ -114,16 +147,19 @@ export function About() {
 
         {/* 会社概要 */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 50, rotate: 1 }}
+          whileInView={{ opacity: 1, x: 0, rotate: 1 }}
           viewport={{ once: true }}
+          whileHover={{ rotate: 0, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 50 }}
-          className="mb-20 p-8 md:p-12 bg-white border-4 border-black shadow-pop rounded-3xl relative overflow-hidden"
+          className="mb-32 p-8 md:p-12 bg-white border-4 border-black shadow-neo-lg rounded-[2rem] relative overflow-hidden max-w-4xl mx-auto"
         >
-          <div className="absolute top-0 left-0 w-32 h-32 bg-vivid-pink rounded-br-full opacity-20" />
+          <div className="absolute top-0 left-0 w-40 h-40 bg-pop-pink rounded-br-full opacity-100 border-r-4 border-b-4 border-black" />
           
-          <h3 className="text-2xl md:text-3xl font-black mb-8 text-center text-slate-900 relative z-10">会社概要</h3>
-          <div className="space-y-6 relative z-10 font-medium">
+          <h3 className="text-3xl md:text-4xl font-black mb-10 text-center text-black relative z-10">
+            <span className="bg-white px-4 py-1 border-4 border-black shadow-pop transform -rotate-2 inline-block">会社概要</span>
+          </h3>
+          <div className="space-y-0 relative z-10 font-bold text-lg">
             {[
               { label: "会社名", value: "デューフィルム株式会社" },
               { label: "創業", value: "2022年1月" },
@@ -133,9 +169,13 @@ export function About() {
               { label: "メールアドレス", value: "info@diwfilm.com" },
               { label: "事業内容", value: "SNSコンサルティング事業\n映像制作・動画編集事業\n撮影機材レンタル事業" },
             ].map((item, index) => (
-              <div key={index} className="flex flex-col md:flex-row border-b-2 border-slate-100 pb-4 last:border-0">
-                <h4 className="font-bold w-full md:w-1/4 mb-2 md:mb-0 text-slate-800">{item.label}</h4>
-                <p className="text-slate-600 w-full md:w-3/4 whitespace-pre-line">{item.value}</p>
+              <div key={index} className="flex flex-col md:flex-row border-b-2 border-black last:border-0 group hover:bg-slate-50 transition-colors">
+                <div className="w-full md:w-1/3 p-4 bg-slate-100 md:bg-transparent border-b-2 md:border-b-0 md:border-r-2 border-black group-hover:bg-pop-yellow/20 transition-colors">
+                    {item.label}
+                </div>
+                <div className="w-full md:w-2/3 p-4 whitespace-pre-line group-hover:bg-pop-blue/10 transition-colors">
+                    {item.value}
+                </div>
               </div>
             ))}
           </div>
@@ -148,20 +188,28 @@ export function About() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <h3 className="text-3xl md:text-5xl font-black text-center mb-16 text-slate-900 tracking-tight">
-            Our Strengths
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl md:text-6xl font-black text-black tracking-tight inline-block relative">
+              Our Strengths
+              <span className="absolute -top-8 -right-12 text-pop-yellow animate-spin-slow">
+                <Star size={64} fill="currentColor" />
+              </span>
+            </h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {strengths.map((strength, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ scale: 1.03, rotate: strength.rotate }}
-                className={`p-8 rounded-3xl border-4 border-black shadow-pop bg-white relative overflow-hidden group`}
+                whileHover={{ scale: 1.05, rotate: 0, y: -10 }}
+                className={`p-8 rounded-[2rem] border-4 border-black shadow-neo bg-white relative overflow-hidden group h-full flex flex-col transform transition-all duration-300`}
+                style={{ rotate: strength.rotate }}
               >
-                <div className={`absolute top-0 right-0 w-24 h-24 ${strength.color} rounded-bl-full opacity-20 group-hover:opacity-40 transition-opacity`} />
-                <h4 className="font-black mb-4 text-xl md:text-2xl text-slate-900 relative z-10">{strength.title}</h4>
-                <p className="text-slate-600 leading-relaxed font-medium relative z-10">{strength.description}</p>
+                <div className={`absolute top-0 right-0 w-32 h-32 ${strength.color} rounded-bl-full opacity-100 border-l-4 border-b-4 border-black group-hover:scale-110 transition-transform`} />
+                <div className="text-5xl mb-6 relative z-10">{strength.icon}</div>
+                <h4 className="font-black mb-4 text-xl md:text-2xl text-black relative z-10 whitespace-pre-line leading-tight">{strength.title}</h4>
+                <p className="text-slate-700 leading-relaxed font-bold text-sm relative z-10">{strength.description}</p>
               </motion.div>
             ))}
           </div>
