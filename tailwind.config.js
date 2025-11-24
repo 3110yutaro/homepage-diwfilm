@@ -49,6 +49,14 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        'vivid-yellow': '#FFD700',
+        'vivid-pink': '#FF69B4',
+        'vivid-blue': '#00BFFF',
+        'vivid-purple': '#8A2BE2',
+      },
+      boxShadow: {
+        'pop': '4px 4px 0px 0px rgba(0,0,0,1)',
+        'pop-hover': '2px 2px 0px 0px rgba(0,0,0,1)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -57,6 +65,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        montserrat: ["Montserrat", "sans-serif"],
       },
       keyframes: {
         blob: {

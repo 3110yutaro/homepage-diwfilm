@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import { motion, Variants } from 'framer-motion';
 
 interface FlowingTextProps {
   text: string;
@@ -15,20 +18,53 @@ export function FlowingText({
 }: FlowingTextProps) {
   const characters = text.split('');
 
+  const container: Variants = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: stagger, delayChildren: initialDelay },
+    }),
+  };
+
+  const child: Variants = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      scale: 0.5,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
+
   return (
-    <p className={className}>
+    <motion.p
+      className={className}
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
       {characters.map((char, index) => (
-        <span
+        <motion.span
           key={index}
-          className="inline-block opacity-0 animate-fade-in-up"
-          style={{
-            animationDelay: `${initialDelay + index * stagger}s`,
-            animationFillMode: 'forwards',
-          }}
+          variants={child}
+          className="inline-block"
         >
           {char === ' ' ? '\u00A0' : char}
-        </span>
+        </motion.span>
       ))}
-    </p>
+    </motion.p>
   );
 }
