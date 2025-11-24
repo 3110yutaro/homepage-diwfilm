@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { SubmitButton } from "@/app/components/ui/SubmitButton"
+import { Mail, Send, MessageCircle, PartyPopper } from "lucide-react"
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -63,63 +64,88 @@ export function Contact() {
     }
   }
 
-  const inputClasses = "w-full px-4 py-3 border-2 border-slate-200 rounded-xl bg-slate-50 focus:outline-none focus:border-black focus:ring-0 transition-colors duration-200 font-medium text-slate-900 placeholder:text-slate-400"
-  const labelClasses = "block text-sm font-bold mb-2 text-slate-900"
+  const inputClasses = "w-full px-6 py-4 border-4 border-black rounded-2xl bg-white focus:outline-none focus:border-pop-blue focus:ring-4 focus:ring-pop-blue/20 transition-all duration-300 font-bold text-lg text-black placeholder:text-slate-400 shadow-sm hover:shadow-md"
+  const labelClasses = "block text-lg font-black mb-3 text-black ml-2"
 
   return (
-    <section id="contact" className="relative py-20 md:py-32 overflow-hidden">
+    <section id="contact" className="relative py-32 overflow-hidden bg-pop-yellow/10">
       {/* 背景装飾 */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-vivid-blue rounded-full mix-blend-multiply filter blur-3xl opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+      
+      {/* Floating Icons */}
+      <motion.div 
+        className="absolute top-20 left-10 pointer-events-none text-pop-blue"
+        animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
+        transition={{ duration: 4, repeat: Infinity }}
+      >
+        <Mail size={64} strokeWidth={1.5} />
+      </motion.div>
+      <motion.div 
+        className="absolute bottom-20 right-10 pointer-events-none text-pop-pink"
+        animate={{ y: [0, -30, 0], rotate: [0, -10, 0] }}
+        transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+      >
+        <Send size={96} strokeWidth={1.5} />
+      </motion.div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* セクションタイトル */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-4xl md:text-6xl font-black font-montserrat text-transparent bg-clip-text bg-gradient-to-r from-vivid-blue to-vivid-purple mb-6 tracking-tighter drop-shadow-sm">
+            <h2 className="text-5xl md:text-7xl font-black font-montserrat text-black mb-8 tracking-tighter relative inline-block">
               Contact
+              <span className="absolute -top-6 -right-12 text-pop-yellow animate-bounce delay-1000">
+                <MessageCircle size={64} strokeWidth={2} />
+              </span>
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-medium">
-              サービスに関するご質問やご相談など、お気軽にお問い合わせください。<br className="hidden md:block" />
-              専門スタッフが丁寧に対応させていただきます。
+            <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold leading-relaxed">
+              サービスに関するご質問やご相談など、<br className="hidden md:block" />
+              お気軽にお問い合わせください！
             </p>
           </motion.div>
 
           <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 50, rotate: 1 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 50 }}
-            className="max-w-3xl mx-auto"
+            className="max-w-4xl mx-auto"
           >
             {/* お問い合わせフォーム */}
-            <div className="p-8 md:p-12 bg-white border-4 border-black shadow-pop rounded-3xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-vivid-yellow rounded-bl-full opacity-20 pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-vivid-pink rounded-tr-full opacity-20 pointer-events-none" />
+            <div className="p-8 md:p-16 bg-white border-4 border-black shadow-neo-xl rounded-[3rem] relative overflow-hidden transform transition-transform hover:scale-[1.01] duration-500">
+              {/* Decorative Corners */}
+              <div className="absolute top-0 right-0 w-40 h-40 bg-pop-blue rounded-bl-full opacity-100 border-l-4 border-b-4 border-black" />
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-pop-pink rounded-tr-full opacity-100 border-r-4 border-t-4 border-black" />
 
-              <h3 className="text-2xl md:text-3xl font-black mb-8 text-center text-slate-900 relative z-10">
-                お問い合わせフォーム
+              <h3 className="text-3xl md:text-4xl font-black mb-12 text-center text-black relative z-10">
+                <span className="bg-pop-yellow px-6 py-2 border-4 border-black shadow-pop transform -rotate-2 inline-block">
+                  お問い合わせフォーム
+                </span>
               </h3>
 
               {isSuccess ? (
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center p-8 bg-green-50 border-2 border-green-200 text-green-800 rounded-2xl"
+                  className="text-center p-12 bg-pop-green/20 border-4 border-pop-green text-green-900 rounded-3xl relative z-10"
                 >
-                  <p className="font-bold text-xl mb-2">お問い合わせありがとうございます！</p>
-                  <p>メッセージは正常に送信されました。担当者よりご連絡いたします。</p>
+                  <div className="flex justify-center mb-6 text-pop-green">
+                    <PartyPopper size={64} strokeWidth={1.5} />
+                  </div>
+                  <p className="font-black text-3xl mb-4">Thank You!</p>
+                  <p className="font-bold text-xl">お問い合わせありがとうございます。<br/>担当者よりご連絡いたします。</p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
+                <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="group">
                       <label htmlFor="name" className={labelClasses}>
-                        お名前 <span className="text-vivid-pink">*</span>
+                        お名前 <span className="text-pop-pink">*</span>
                       </label>
                       <input
                         type="text"
@@ -134,9 +160,9 @@ export function Contact() {
                       />
                     </div>
 
-                    <div>
+                    <div className="group">
                       <label htmlFor="email" className={labelClasses}>
-                        メールアドレス <span className="text-vivid-pink">*</span>
+                        メールアドレス <span className="text-pop-pink">*</span>
                       </label>
                       <input
                         type="email"
@@ -152,7 +178,7 @@ export function Contact() {
                     </div>
                   </div>
 
-                  <div>
+                  <div className="group">
                     <label htmlFor="company" className={labelClasses}>
                       会社名
                     </label>
@@ -168,9 +194,9 @@ export function Contact() {
                     />
                   </div>
 
-                  <div>
+                  <div className="group">
                     <label htmlFor="subject" className={labelClasses}>
-                      お問い合わせ種別 <span className="text-vivid-pink">*</span>
+                      お問い合わせ種別 <span className="text-pop-pink">*</span>
                     </label>
                     <div className="relative">
                       <select
@@ -188,17 +214,17 @@ export function Contact() {
                         <option value="導入相談">導入相談</option>
                         <option value="その他">その他</option>
                       </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500">
-                        <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                      <div className="absolute inset-y-0 right-0 flex items-center px-6 pointer-events-none text-black">
+                        <svg className="w-6 h-6 fill-current" viewBox="0 0 20 20">
                           <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path>
                         </svg>
                       </div>
                     </div>
                   </div>
 
-                  <div>
+                  <div className="group">
                     <label htmlFor="message" className={labelClasses}>
-                      お問い合わせ内容 <span className="text-vivid-pink">*</span>
+                      お問い合わせ内容 <span className="text-pop-pink">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -206,7 +232,7 @@ export function Contact() {
                       value={formData.message}
                       onChange={handleInputChange}
                       required
-                      rows={5}
+                      rows={6}
                       className={`${inputClasses} resize-none`}
                       placeholder="お問い合わせ内容を詳しくお書きください。"
                       disabled={isSubmitting}
@@ -214,12 +240,12 @@ export function Contact() {
                   </div>
 
                   {error && (
-                    <div className="text-center p-4 bg-red-50 border-2 border-red-200 text-red-600 rounded-xl font-bold">
+                    <div className="text-center p-6 bg-red-50 border-4 border-red-200 text-red-600 rounded-2xl font-bold text-lg">
                       <p>{error}</p>
                     </div>
                   )}
 
-                  <div className="pt-4">
+                  <div className="pt-8 text-center">
                     <SubmitButton isSubmitting={isSubmitting} />
                   </div>
                 </form>

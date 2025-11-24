@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { RotatingVisionText } from '@/app/components/animations/RotatingVisionText';
-import { FlowingText } from '@/app/components/animations/FlowingText';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { Sparkles, Rocket } from 'lucide-react';
 
 interface HeroProps {
   showContent: boolean;
@@ -16,139 +16,190 @@ const features = [
     description: '私たちについて',
     imageSrc: '/assets/aboutus_button.png',
     href: '/about',
-    color: 'bg-vivid-yellow',
-    rotate: -2,
+    color: 'bg-pop-yellow',
+    rotate: -3,
+    delay: 0,
   },
   {
     name: 'Service',
     description: 'サービス紹介',
     imageSrc: '/assets/service_button.jpg',
     href: '/products',
-    color: 'bg-vivid-pink',
-    rotate: 1,
+    color: 'bg-pop-pink',
+    rotate: 2,
+    delay: 0.1,
   },
   {
     name: 'Contact',
     description: 'お問い合わせ',
     imageSrc: '/assets/ask_button.jpg',
     href: '/contact',
-    color: 'bg-vivid-blue',
-    rotate: -1,
+    color: 'bg-pop-blue',
+    rotate: -2,
+    delay: 0.2,
   },
 ];
 
 export function Hero({ showContent }: HeroProps) {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, 10]);
+
   const baseDelay = showContent ? 1.7 : 0;
 
   return (
-    <section id="home" className="relative min-h-screen pt-32 pb-12 overflow-hidden flex items-center justify-center bg-white">
-      {/* Background Decor */}
-      <div className="absolute top-20 right-[-10%] w-96 h-96 bg-pop-yellow rounded-full blur-3xl opacity-30 animate-pulse"></div>
-      <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-pop-pink rounded-full blur-3xl opacity-20"></div>
+    <section ref={containerRef} id="home" className="relative min-h-screen pt-32 pb-20 overflow-hidden flex items-center justify-center bg-white">
+      {/* Background Patterns */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-pop-yellow/10 to-transparent pointer-events-none" />
+      
+      {/* Floating Elements */}
+      <motion.div 
+        className="absolute top-20 left-[10%] animate-bounce delay-700 pointer-events-none select-none text-pop-yellow"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: baseDelay + 1 }}
+      >
+        <Sparkles size={64} strokeWidth={1.5} />
+      </motion.div>
+      <motion.div 
+        className="absolute bottom-40 right-[5%] animate-pulse pointer-events-none select-none text-pop-blue"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: baseDelay + 1.2 }}
+      >
+        <Rocket size={96} strokeWidth={1.5} />
+      </motion.div>
 
-      <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
         {/* Text Content */}
-        <div className="text-center md:text-left">
+        <div className="text-center lg:text-left relative">
           <motion.div
-            className="inline-block px-4 py-2 bg-pop-blue border-2 border-black rounded-full mb-6 transform -rotate-2 shadow-neo-hover"
-            initial={{ opacity: 0, y: 20, rotate: -5 }}
-            animate={{ opacity: 1, y: 0, rotate: -2 }}
-            transition={{ delay: baseDelay + 0.2, type: "spring", stiffness: 100, damping: 20 }}
+            className="inline-block px-6 py-3 bg-black text-white rounded-full mb-8 transform -rotate-3 shadow-neo-hover border-2 border-white"
+            initial={{ opacity: 0, y: 20, rotate: -10 }}
+            animate={{ opacity: 1, y: 0, rotate: -3 }}
+            transition={{ delay: baseDelay + 0.2, type: "spring", stiffness: 100 }}
           >
-            <span className="font-bold text-white tracking-widest">VIDEO PRODUCTION</span>
+            <span className="font-black tracking-widest text-sm md:text-base">VIDEO PRODUCTION STUDIO</span>
           </motion.div>
+          
           <motion.h1
-            className="font-pop text-6xl md:text-8xl leading-[0.9] text-pop-black mb-8"
-            initial={{ opacity: 0, y: 20 }}
+            className="font-black text-7xl md:text-9xl leading-[0.85] text-black mb-8 tracking-tighter"
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: baseDelay + 0.4, type: "spring", stiffness: 100, damping: 20 }}
+            transition={{ delay: baseDelay + 0.4, type: "spring", stiffness: 100 }}
           >
-            <span className="text-pop-black">WE MAKE</span> <br />
-            <span className="text-pop-pink relative inline-block">
+            WE MAKE <br />
+            <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-pop-pink to-pop-purple">
               IT MOVE
-              <svg className="absolute -bottom-4 left-0 w-full" viewBox="0 0 100 10" preserveAspectRatio="none">
-                <path d="M0 5 Q 50 10 100 5" stroke="black" strokeWidth="4" fill="none" />
+              <svg className="absolute -bottom-2 left-0 w-full h-4 text-black" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
               </svg>
             </span>
-            <span className="text-pop-yellow">!</span>
+            <span className="text-pop-yellow inline-block animate-bounce">!</span>
           </motion.h1>
+
           <motion.p
-            className="font-body text-lg md:text-xl text-gray-700 mb-10 max-w-lg mx-auto md:mx-0 leading-relaxed font-bold"
+            className="font-bold text-lg md:text-2xl text-slate-700 mb-12 max-w-lg mx-auto lg:mx-0 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: baseDelay + 0.8, type: "spring", stiffness: 100, damping: 20 }}
+            transition={{ delay: baseDelay + 0.8 }}
           >
-            あなたの「伝えたい」を、世界一ワクワクするカタチに。<br />
-            DIW FILMは、遊び心と確かな技術で、ビジネスを加速させる映像パートナーです。
+            あなたの「伝えたい」を、<br className="md:hidden"/>世界一ワクワクするカタチに。<br />
+            <span className="bg-pop-green/30 px-2">遊び心</span>と<span className="bg-pop-blue/30 px-2">確かな技術</span>で、<br />
+            ビジネスを加速させる映像パートナー。
           </motion.p>
 
-          {/* ナビゲーションカード */}
-          <div className="mt-16">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.name}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: baseDelay + 2 + index * 0.2, type: "spring", stiffness: 50 }}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    rotate: feature.rotate * -2,
-                    boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)"
-                  }}
-                  className="relative group"
-                >
-                  <Link href={feature.href} className="block h-full">
-                    <div className={`relative h-80 w-full rounded-3xl overflow-hidden border-4 border-black shadow-pop transition-all duration-300 ${feature.color}`}>
-                      <div className="absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-                        <Image
-                          src={feature.imageSrc}
-                          alt={feature.name}
-                          fill
-                          className="object-cover mix-blend-overlay"
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
-                      
-                      <div className="absolute bottom-0 left-0 p-6 w-full bg-white/90 backdrop-blur-sm border-t-4 border-black transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                        <h3 className="text-2xl font-black text-black uppercase tracking-tighter">{feature.name}</h3>
-                        <p className="text-sm font-bold text-slate-600 mt-1">{feature.description}</p>
+          {/* Navigation Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto lg:mx-0">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.name}
+                initial={{ opacity: 0, y: 50, rotate: feature.rotate }}
+                animate={{ opacity: 1, y: 0, rotate: feature.rotate }}
+                transition={{ delay: baseDelay + 1 + index * 0.1, type: "spring" }}
+                whileHover={{ 
+                  scale: 1.1, 
+                  rotate: 0,
+                  zIndex: 10,
+                  transition: { type: "spring", stiffness: 300 }
+                }}
+                className="relative group"
+              >
+                <Link href={feature.href} className="block">
+                  <div className={`relative aspect-[4/5] w-full rounded-2xl overflow-hidden border-4 border-black shadow-neo transition-all duration-300 ${feature.color}`}>
+                    <div className="absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity duration-300 mix-blend-multiply">
+                      <Image
+                        src={feature.imageSrc}
+                        alt={feature.name}
+                        fill
+                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                      />
+                    </div>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-black/10 group-hover:bg-transparent transition-colors">
+                      <div className="bg-white border-2 border-black px-4 py-2 rounded-full shadow-neo-hover transform group-hover:scale-110 transition-transform">
+                        <span className="font-black text-black uppercase text-sm">{feature.name}</span>
                       </div>
                     </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
 
-        {/* Visual Content - Playful Abstract Composition (今回は変更しない) */}
-        <div className="relative h-[400px] md:h-[600px] flex items-center justify-center">
-            <div className="relative w-full max-w-md aspect-square">
-                 {/* Main circle */}
-                 <div className="absolute inset-0 bg-pop-purple rounded-full border-4 border-black overflow-hidden flex items-center justify-center group shadow-neo-lg">
-                    {/* Placeholder for video reel or key visual */}
-                    <div className="absolute inset-0 bg-[url('https://picsum.photos/800/800?random=1')] bg-cover bg-center opacity-80 group-hover:scale-110 transition-transform duration-700"></div>
-                    <div className="absolute inset-0 bg-black/20"></div>
-                    
-                    {/* Floating elements inside */}
-                    <div className="relative z-10 text-white text-center p-6">
-                        <div className="w-20 h-20 bg-white rounded-full mx-auto mb-4 border-2 border-black flex items-center justify-center text-pop-black animate-bounce">
-                            {/* <Icons.Video /> */} {/* Icons.Video は未定義のためコメントアウト */}
-                        </div>
-                        <h3 className="font-pop text-3xl">Creative</h3>
-                    </div>
-                 </div>
+        {/* Visual Content - Collage Style */}
+        <motion.div 
+          style={{ y, rotate }}
+          className="relative h-[500px] md:h-[700px] hidden lg:flex items-center justify-center"
+        >
+            <div className="relative w-full max-w-lg aspect-square">
+                 {/* Main Visual Circle */}
+                 <motion.div 
+                   className="absolute inset-0 bg-pop-purple rounded-full border-4 border-black overflow-hidden shadow-neo-xl z-10"
+                   animate={{ 
+                     borderRadius: ["50% 50% 50% 50%", "60% 40% 30% 70%", "40% 60% 70% 30%", "50% 50% 50% 50%"] 
+                   }}
+                   transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                 >
+                    <div className="absolute inset-0 bg-[url('/assets/diwfilm_hero.jpg')] bg-cover bg-center opacity-90 hover:scale-110 transition-transform duration-700"></div>
+                    <div className="absolute inset-0 bg-gradient-to-tr from-pop-purple/50 to-transparent mix-blend-overlay"></div>
+                 </motion.div>
 
-                 {/* Decorative floating shapes */}
-                 <div className="absolute -top-6 -right-6 w-24 h-24 bg-pop-yellow rounded-xl border-2 border-black flex items-center justify-center text-4xl shadow-neo animate-[bounce_3s_infinite]">
-                    🎬
-                 </div>
-                 <div className="absolute bottom-10 -left-10 w-32 h-16 bg-pop-blue rounded-full border-2 border-black flex items-center justify-center shadow-neo">
-                    <span className="font-bold text-white">Action!</span>
+                 {/* Decorative Elements */}
+                 <motion.div 
+                   className="absolute -top-10 -right-10 w-40 h-40 bg-pop-yellow border-4 border-black rounded-full flex items-center justify-center z-20 shadow-neo"
+                   animate={{ y: [0, -20, 0] }}
+                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                 >
+                    <span className="font-black text-xl text-center leading-tight">CREATIVE<br/>STUDIO</span>
+                 </motion.div>
+
+                 <motion.div 
+                   className="absolute bottom-0 -left-10 w-48 h-24 bg-pop-blue border-4 border-black rounded-full flex items-center justify-center z-20 shadow-neo transform -rotate-12"
+                   whileHover={{ scale: 1.1, rotate: -5 }}
+                 >
+                    <span className="font-black text-white text-2xl">EST. 2024</span>
+                 </motion.div>
+
+                 {/* Sticker Elements */}
+                 <div className="absolute top-1/2 -right-20 w-32 h-32 z-0 opacity-50">
+                    <svg viewBox="0 0 200 200" className="animate-spin-slow w-full h-full">
+                      <path id="curve" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0" fill="transparent"/>
+                      <text width="500">
+                        <textPath xlinkHref="#curve" className="text-xl font-bold fill-black tracking-widest">
+                          VIDEO PRODUCTION • MOTION GRAPHICS • 
+                        </textPath>
+                      </text>
+                    </svg>
                  </div>
             </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
