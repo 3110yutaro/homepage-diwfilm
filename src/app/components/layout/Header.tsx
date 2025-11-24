@@ -31,7 +31,7 @@ export function Header() {
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
       >
       <div className="px-6 md:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-12 items-center justify-between">
           {/* ロゴ */}
           <Link href="/" className="flex items-center group">
             <span className="text-2xl font-black tracking-tighter text-black group-hover:scale-105 transition-transform">DIW FILM</span>
