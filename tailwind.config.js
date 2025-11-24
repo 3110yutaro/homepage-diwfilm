@@ -16,25 +16,6 @@ module.exports = {
       },
     },
     extend: {
-      keyframes: {
-        blob: {
-          "0%": {
-            transform: "translate(0px, 0px) scale(1)",
-          },
-          "33%": {
-            transform: "translate(30px, -50px) scale(1.1)",
-          },
-          "66%": {
-            transform: "translate(-20px, 20px) scale(0.9)",
-          },
-          "100%": {
-            transform: "translate(0px, 0px) scale(1)",
-          },
-        },
-      },
-      animation: {
-        blob: "blob 7s infinite",
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -68,6 +49,22 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        'vivid-yellow': '#FFD700',
+        'vivid-pink': '#FF69B4',
+        'vivid-blue': '#00BFFF',
+        'vivid-purple': '#8A2BE2',
+        'pop-yellow': '#FFEB3B',
+        'pop-pink': '#E91E63',
+        'pop-blue': '#2196F3',
+        'pop-black': '#212121',
+        'pop-purple': '#9C27B0',
+      },
+      boxShadow: {
+        'pop': '4px 4px 0px 0px rgba(0,0,0,1)',
+        'pop-hover': '2px 2px 0px 0px rgba(0,0,0,1)',
+        'neo': '6px 6px 0px 0px rgba(0,0,0,1)',
+        'neo-hover': '3px 3px 0px 0px rgba(0,0,0,1)',
+        'neo-lg': '8px 8px 0px 0px rgba(0,0,0,1)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -76,8 +73,17 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        montserrat: ["Montserrat", "sans-serif"],
+        pop: ["Montserrat", "sans-serif"], // 仮にMontserratを割り当て
+        body: ["var(--font-sans)", ...fontFamily.sans], // デフォルトのsansを割り当て
       },
       keyframes: {
+        blob: {
+          "0%": { transform: "translate(0px, 0px) scale(1)" },
+          "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+          "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+          "100%": { transform: "translate(0px, 0px) scale(1)" },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -99,13 +105,20 @@ module.exports = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
+        blob: "blob 7s infinite",
+        "spin-slow": "spin 20s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "pop-and-spin": "pop-and-spin 0.8s ease-out forwards",
         "fade-out": "fade-out 0.5s ease-out forwards",
         "fade-in": "fade-in 1s ease-out forwards",
+        "fade-in-up": "fade-in-up 0.5s ease-out forwards",
       },
     },
   },

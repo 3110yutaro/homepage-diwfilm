@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 /* @import "tw-animate-css"; */
 @tailwind base;
 @tailwind components;
@@ -131,14 +132,14 @@
     font-family: 'Noto Sans JP', 'Inter', sans-serif;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    font-family: 'Montserrat', 'Inter', 'Noto Sans JP', sans-serif;
   }
 }
 
 /* カスタム水色テーマの設定 */
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent;
   }
   .bg-gradient-blue {
     @apply bg-gradient-to-br from-sky-500 via-cyan-500 to-blue-500;
@@ -159,5 +160,9 @@
       rgba(255, 255, 255, 0) 100%  /* 下部を透明で終了 */
     ); /* 上部と下部から白でフェードアウト */
     mask-mode: alpha; /* マスクの適用方法 */
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   }
 }
