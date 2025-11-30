@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import ContactTemplate from '@/app/components/emails/ContactTemplate'
+import AutoReplyTemplate from '@/app/components/emails/AutoReplyTemplate'
 
 // Resendのインスタンスを作成します。環境変数からAPIキーを読み込みます。
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -15,16 +16,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: '必須項目が不足しています。' }, { status: 400 });
     }
 
-    // Resendを使ってメールを送信します。
-    const data = await resend.emails.send({
+    // Resendを使ってメールを送信します（管理者宛）。
+    const adminEmail = await resend.emails.send({
       from: 'DIWFilm Website <noreply@diwfilm.com>', // 送信元メールアドレス
       to: ['info@diwfilm.com'], // 送信先メールアドレス
       subject: `【DIWFilm】ウェブサイトからのお問い合わせ: ${subject}`, // メールの件名
       react: ContactTemplate({ name, email, company, subject, message }) // メール本文のテンプレート
     })
 
+    // ユーザーへの自動返信メールを送信します。
+    await resend.emails.send({
+      from: 'DIWFilm Website <noreply@diwfilm.com>',
+      to: [email],
+      subject: '【DIWFilm】お問い合わせありがとうございます',
+      react: AutoReplyTemplate({ name, message })
+    })
+
     // 成功した場合は、送信データを返します。
-    return NextResponse.json(data);
+    return NextResponse.json(adminEmail);
   } catch (error) {
     // エラーが発生した場合は、エラーメッセージを返します。
     console.error('Email sending error:', error);
