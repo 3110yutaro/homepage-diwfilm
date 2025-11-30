@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { Sparkles, Rocket } from 'lucide-react';
 
@@ -42,13 +42,6 @@ const features = [
 
 export function Hero({ showContent }: HeroProps) {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 10]);
 
   const baseDelay = showContent ? 1.7 : 0;
 
@@ -155,8 +148,7 @@ export function Hero({ showContent }: HeroProps) {
 
         {/* Visual Content - Appears below text on mobile */}
         <motion.div 
-          style={{ y, rotate }}
-          className="relative h-[400px] sm:h-[500px] md:h-[700px] flex items-center justify-center mt-12 lg:mt-0"
+          className="relative w-full aspect-square lg:aspect-auto lg:h-[700px] flex items-center justify-center mt-12 lg:mt-0 py-10 lg:py-0"
         >
             <div className="relative w-full max-w-lg aspect-square">
                  {/* Main Visual Circle */}
