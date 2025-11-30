@@ -46,7 +46,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
       className={`flex flex-col ${borderRadius} border-4 border-black shadow-neo bg-white overflow-hidden h-full relative group transform transition-all duration-300`}
     >
       {/* Image Section */}
-      <div className="w-full h-64 bg-slate-100 relative overflow-hidden border-b-4 border-black">
+      <div className="w-full h-48 sm:h-64 bg-slate-100 relative overflow-hidden border-b-4 border-black">
         <Image 
           src={service.imageUrl} 
           alt={service.title} 
@@ -62,11 +62,11 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
       </div>
       
       {/* Content Section */}
-      <div className="p-8 flex-grow flex flex-col relative">
+      <div className="p-6 md:p-8 flex-grow flex flex-col relative">
         {/* Background Decoration */}
         <div className={`absolute top-0 right-0 w-32 h-32 ${accentColor} rounded-bl-full opacity-20 -z-10 transition-transform duration-300 group-hover:scale-150`} />
         
-        <h3 className="text-2xl font-black mb-4 text-black tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-pop-blue group-hover:to-pop-purple transition-all duration-300">
+        <h3 className="text-xl md:text-2xl font-black mb-4 text-black tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-pop-blue group-hover:to-pop-purple transition-all duration-300">
           {service.title}
         </h3>
         <p className="text-slate-700 mb-6 leading-relaxed flex-grow font-bold text-sm">

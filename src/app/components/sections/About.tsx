@@ -78,7 +78,7 @@ export function About() {
       {/* Parallax Background Text */}
       <motion.div 
         style={{ y, rotate }}
-        className="absolute top-1/4 -left-20 text-[20vw] font-black text-slate-100 pointer-events-none select-none leading-none z-0"
+        className="absolute top-1/4 -left-20 text-[20vw] font-black text-slate-100 pointer-events-none select-none leading-none z-0 hidden lg:block"
       >
         ABOUT
       </motion.div>
@@ -89,15 +89,15 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-24"
+          className="text-center mb-16 md:mb-24"
         >
           <div className="inline-block relative">
-            <h2 className="text-5xl md:text-7xl font-black font-montserrat text-black mb-6 tracking-tighter relative z-10">
+            <h2 className="text-4xl md:text-7xl font-black font-montserrat text-black mb-6 tracking-tighter relative z-10">
               About Us
             </h2>
-            <div className="absolute -bottom-2 left-0 w-full h-4 bg-pop-yellow -rotate-2 z-0"></div>
+            <div className="absolute -bottom-2 left-0 w-full h-3 md:h-4 bg-pop-yellow -rotate-2 z-0"></div>
           </div>
-          <p className="text-lg md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold mt-8 leading-relaxed">
+          <p className="text-base md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold mt-8 leading-relaxed">
             私たちは、デジタル時代のコンテンツパートナーとして、<br className="hidden md:block" />
             お客様の「伝えたい」想いをカタチにし、<br className="hidden md:block" />
             ビジネスの成長を加速させるお手伝いをします。
@@ -111,13 +111,13 @@ export function About() {
           viewport={{ once: true }}
           whileHover={{ rotate: 0, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 50 }}
-          className="mb-24 p-8 md:p-12 bg-white border-4 border-black shadow-neo-lg rounded-[2rem] relative overflow-hidden max-w-5xl mx-auto"
+          className="mb-16 md:mb-24 p-6 md:p-12 bg-white border-4 border-black shadow-neo-lg rounded-[2rem] relative overflow-hidden max-w-5xl mx-auto"
         >
-          <div className="absolute top-0 right-0 w-40 h-40 bg-pop-yellow rounded-bl-full opacity-100 border-l-4 border-b-4 border-black" />
+          <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-pop-yellow rounded-bl-full opacity-100 border-l-4 border-b-4 border-black" />
           
           <div className="flex flex-col md:flex-row items-start gap-8 md:gap-16 relative z-10">
-            <div className="relative mx-auto md:mx-0">
-                <div className="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-black overflow-hidden shadow-pop bg-pop-blue relative z-10">
+            <div className="relative mx-auto md:mx-0 flex-shrink-0">
+                <div className="w-40 h-40 md:w-64 md:h-64 rounded-full border-4 border-black overflow-hidden shadow-pop bg-pop-blue relative z-10">
                 <Image
                     src="/assets/kajiwara_hideo_icon.png"
                     alt="代表取締役 梶原英生"
@@ -132,8 +132,8 @@ export function About() {
             </div>
             
             <div className="flex-grow text-center md:text-left">
-              <h3 className="text-3xl md:text-4xl font-black mb-8 text-black inline-block border-b-4 border-pop-blue pb-2">代表挨拶</h3>
-              <div className="text-slate-700 leading-relaxed whitespace-pre-line space-y-6 font-medium text-lg">
+              <h3 className="text-2xl md:text-4xl font-black mb-6 md:mb-8 text-black inline-block border-b-4 border-pop-blue pb-2">代表挨拶</h3>
+              <div className="text-slate-700 leading-relaxed whitespace-pre-line space-y-6 font-medium text-base md:text-lg">
                 <p>私たちのホームページに訪れていただき、誠にありがとうございます。<br />代表の梶原英生です。</p>
                 <p>現代は、誰もが発信者となり、想いを世界中に届けられる素晴らしい時代です。しかし、溢れる情報の中で本当に価値あるメッセージを届け、人の心を動かすことは容易ではありません。</p>
                 <p>私たちデューフィルム株式会社は、そんなデジタル時代におけるお客様の最高のパートナーとなるべく創業いたしました。私たちの使命は、お客様一人ひとりが胸に秘めた「伝えたい」という純粋な想いを、プロフェッショナルな技術とクリエイティビティによって、最も伝わる「カタチ」にすることです。</p>
@@ -152,14 +152,14 @@ export function About() {
           viewport={{ once: true }}
           whileHover={{ rotate: 0, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 50 }}
-          className="mb-32 p-8 md:p-12 bg-white border-4 border-black shadow-neo-lg rounded-[2rem] relative overflow-hidden max-w-4xl mx-auto"
+          className="mb-16 md:mb-32 p-6 md:p-12 bg-white border-4 border-black shadow-neo-lg rounded-[2rem] relative overflow-hidden max-w-4xl mx-auto"
         >
-          <div className="absolute top-0 left-0 w-40 h-40 bg-pop-pink rounded-br-full opacity-100 border-r-4 border-b-4 border-black" />
+          <div className="absolute top-0 left-0 w-32 h-32 md:w-40 md:h-40 bg-pop-pink rounded-br-full opacity-100 border-r-4 border-b-4 border-black" />
           
-          <h3 className="text-3xl md:text-4xl font-black mb-10 text-center text-black relative z-10">
+          <h3 className="text-3xl md:text-4xl font-black mb-8 md:mb-10 text-center text-black relative z-10">
             <span className="bg-white px-4 py-1 border-4 border-black shadow-pop transform -rotate-2 inline-block">会社概要</span>
           </h3>
-          <div className="space-y-0 relative z-10 font-bold text-lg">
+          <div className="space-y-0 relative z-10 font-bold text-base md:text-lg">
             {[
               { label: "会社名", value: "デューフィルム株式会社" },
               { label: "創業", value: "2022年1月" },
@@ -188,11 +188,11 @@ export function About() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-6xl font-black text-black tracking-tight inline-block relative">
+          <div className="text-center mb-12 md:mb-16">
+            <h3 className="text-3xl md:text-6xl font-black text-black tracking-tight inline-block relative">
               Our Strengths
-              <span className="absolute -top-8 -right-12 text-pop-yellow animate-spin-slow">
-                <Star size={64} fill="currentColor" />
+              <span className="absolute -top-4 -right-6 md:-top-8 md:-right-12 text-pop-yellow animate-spin-slow">
+                <Star className="h-12 w-12 md:h-16 md:w-16" fill="currentColor" />
               </span>
             </h3>
           </div>
