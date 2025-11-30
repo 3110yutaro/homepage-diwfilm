@@ -41,25 +41,25 @@ export default function Home() {
         <Hero showContent={showContent} />
         <About />
         
-        <section id="services" className="py-32 relative overflow-hidden bg-slate-50">
+        <section id="services" className="py-16 md:py-32 relative overflow-hidden bg-slate-50">
            {/* 背景装飾 */}
            <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
-           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-pop-pink rounded-full mix-blend-multiply filter blur-3xl opacity-5 pointer-events-none" />
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[800px] bg-pop-pink rounded-full mix-blend-multiply filter blur-3xl opacity-5 pointer-events-none" />
            
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-24">
-              <h2 className="text-5xl md:text-7xl font-black font-montserrat text-black mb-8 tracking-tighter relative inline-block">
+            <div className="text-center mb-12 md:mb-24">
+              <h2 className="text-4xl md:text-7xl font-black font-montserrat text-black mb-6 md:mb-8 tracking-tighter relative inline-block">
                 Services
-                <span className="absolute -top-6 -right-12 text-pop-pink animate-spin-slow">
-                  <Settings size={64} strokeWidth={1.5} />
+                <span className="absolute -top-4 -right-8 md:-top-6 md:-right-12 text-pop-pink animate-spin-slow hidden md:inline-block">
+                  <Settings className="h-10 w-10 md:h-16 md:w-16" strokeWidth={1.5} />
                 </span>
               </h2>
-              <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold">
-                お客様の課題解決に向けた、<br className="hidden md:block" />
+              <p className="text-base md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold">
+                お客様の課題解決に向けた、<br />
                 最適なソリューションをご提供します。
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {services.map((service, index) => (
                 <ServiceCard key={index} service={service} index={index} />
               ))}

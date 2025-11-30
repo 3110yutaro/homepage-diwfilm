@@ -127,10 +127,11 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Noto Sans JP', 'Inter', sans-serif;
-  }
+body {
+  @apply bg-background text-foreground;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', 'Inter', 'Noto Sans JP', sans-serif;
   }

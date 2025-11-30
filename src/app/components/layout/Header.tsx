@@ -31,9 +31,9 @@ export function Header() {
 
   return (
     <>
-      <div className="fixed top-6 inset-x-0 z-50 flex justify-center pointer-events-none">
+      <div className="fixed top-2 sm:top-4 inset-x-0 z-50 flex justify-center pointer-events-none w-screen px-2 sm:px-6 lg:px-8">
         <motion.header
-          className={`pointer-events-auto w-[95%] max-w-5xl rounded-full border-4 border-black transition-all duration-300 ${
+          className={`pointer-events-auto w-full max-w-7xl rounded-full border-2 sm:border-4 border-black transition-all duration-300 ${
             isScrolled 
               ? "bg-white shadow-neo" 
               : "bg-white/80 backdrop-blur-md shadow-sm"
@@ -42,14 +42,14 @@ export function Header() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
         >
-          <div className="px-6 md:px-8">
-            <div className="flex h-14 items-center justify-between">
+          <div className="px-3 sm:px-6 md:px-8">
+            <div className="flex h-12 sm:h-14 items-center justify-between">
               {/* ロゴ */}
               <Link href="/" className="flex items-center group relative">
-                <span className="text-2xl font-black tracking-tighter text-black group-hover:scale-105 transition-transform relative z-10">
+                <span className="text-lg sm:text-2xl font-black tracking-tighter text-black group-hover:scale-105 transition-transform relative z-10">
                   DIW FILM
                 </span>
-                <span className="absolute -bottom-1 left-0 w-full h-2 bg-pop-yellow -z-0 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                <span className="absolute -bottom-1 left-0 w-full h-1 sm:h-2 bg-pop-yellow -z-0 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
               </Link>
 
               {/* デスクトップナビゲーション */}
@@ -110,7 +110,7 @@ export function Header() {
             className="fixed inset-0 z-40 bg-pop-yellow flex flex-col items-center justify-center md:hidden"
           >
             {/* 背景装飾 */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 w-screen h-screen overflow-hidden pointer-events-none">
                 <div className="absolute top-10 left-10 w-32 h-32 bg-pop-blue rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
                 <div className="absolute top-10 right-10 w-32 h-32 bg-pop-pink rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
                 <div className="absolute bottom-10 left-20 w-32 h-32 bg-pop-green rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>

@@ -68,7 +68,7 @@ export function Contact() {
   const labelClasses = "block text-lg font-black mb-3 text-black ml-2"
 
   return (
-    <section id="contact" className="relative py-32 overflow-hidden bg-pop-yellow/10">
+    <section id="contact" className="relative py-24 md:py-32 overflow-hidden bg-pop-yellow/10">
       {/* 背景装飾 */}
       <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
       
@@ -95,15 +95,15 @@ export function Contact() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-16 md:mb-20"
           >
-            <h2 className="text-5xl md:text-7xl font-black font-montserrat text-black mb-8 tracking-tighter relative inline-block">
+            <h2 className="text-4xl md:text-7xl font-black font-montserrat text-black mb-8 tracking-tighter relative inline-block">
               Contact
-              <span className="absolute -top-6 -right-12 text-pop-yellow animate-bounce delay-1000">
-                <MessageCircle size={64} strokeWidth={2} />
+              <span className="absolute -top-4 -right-8 md:-top-6 md:-right-12 text-pop-yellow animate-bounce delay-1000">
+                <MessageCircle className="h-10 w-10 md:h-16 md:w-16" strokeWidth={2} />
               </span>
             </h2>
-            <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold leading-relaxed">
+            <p className="text-lg md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold leading-relaxed">
               サービスに関するご質問やご相談など、<br className="hidden md:block" />
               お気軽にお問い合わせください！
             </p>
@@ -117,12 +117,12 @@ export function Contact() {
             className="max-w-4xl mx-auto"
           >
             {/* お問い合わせフォーム */}
-            <div className="p-8 md:p-16 bg-white border-4 border-black shadow-neo-xl rounded-[3rem] relative overflow-hidden transform transition-transform hover:scale-[1.01] duration-500">
+            <div className="p-6 md:p-16 bg-white border-4 border-black shadow-neo-xl rounded-[2rem] md:rounded-[3rem] relative overflow-hidden transform transition-transform hover:scale-[1.01] duration-500">
               {/* Decorative Corners */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-pop-blue rounded-bl-full opacity-100 border-l-4 border-b-4 border-black" />
-              <div className="absolute bottom-0 left-0 w-40 h-40 bg-pop-pink rounded-tr-full opacity-100 border-r-4 border-t-4 border-black" />
+              <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-pop-blue rounded-bl-full opacity-100 border-l-4 border-b-4 border-black" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 md:w-40 md:h-40 bg-pop-pink rounded-tr-full opacity-100 border-r-4 border-t-4 border-black" />
 
-              <h3 className="text-3xl md:text-4xl font-black mb-12 text-center text-black relative z-10">
+              <h3 className="text-2xl md:text-4xl font-black mb-10 md:mb-12 text-center text-black relative z-10">
                 <span className="bg-pop-yellow px-6 py-2 border-4 border-black shadow-pop transform -rotate-2 inline-block">
                   お問い合わせフォーム
                 </span>
