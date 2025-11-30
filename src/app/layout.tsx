@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DIW FILM inc",
-  description: "DIW FILM inc homepage",
+  title: "DIW FILM inc | デューフィルム株式会社",
+  description: "DIW FILM inc は、映像制作とデジタルコンテンツを手掛ける会社「デューフィルム株式会社」の公式ホームページです。",
   icons: {
     icon: "/assets/tab_logo.png",
   },
