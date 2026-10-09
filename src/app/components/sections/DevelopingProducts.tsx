@@ -4,11 +4,11 @@ const products = [
   {
     number: "01",
     category: "LEARNING",
-    title: "英語学習アプリ",
-    catchphrase: "学んだ英語を、使える英語へ。",
+    title: "英語でポン",
+    catchphrase: "出会った英語を、次に使う力へ。",
     description:
-      "日本人の英語学習者に向けて、単語・リスニング・発話練習・学習記録をひとつの体験につなぐアプリを開発しています。覚えた表現を、映像や会話の中で使うところまで支えることを目指しています。",
-    status: "開発・検証中",
+      "英語の映像や字幕で出会った言葉を、自分の語彙と文脈の記録に戻す学習サービスです。その記録を次の字幕や今日の一歩につなげるWeb／Chrome版を開発しています。PicWordと「言えたら」も、関連する学びの体験として育てています。",
+    status: "Web／Chrome版を開発・検証中",
     icon: BookOpenText,
     color: "bg-pop-yellow",
     background: "bg-pop-yellow/10",
@@ -17,9 +17,9 @@ const products = [
     number: "02",
     category: "CREATIVE TOOLS",
     title: "映像制作・編集支援ツール",
-    catchphrase: "編集前の手間を、制作の時間に。",
+    catchphrase: "撮影素材を、編集できる状態へ。",
     description:
-      "自社の映像制作工程から生まれた、社内向けの編集支援ツールです。文字起こしや字幕の整理、Final Cut Pro の編集データとの連携を助け、実際の制作工程で検証しながら改善しています。",
+      "実素材の文字起こしから、質問・話題の整理、字幕確認、Final Cut Pro 用の編集データの受け渡しまでを支える社内向けツールです。編集者が各工程を確かめながら実際の制作に使い、改善を続けています。",
     status: "社内で検証・改善中",
     icon: Clapperboard,
     color: "bg-pop-blue",

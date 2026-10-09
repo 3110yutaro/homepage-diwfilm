@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "DIW FILM inc | デューフィルム株式会社",
-  description: "デューフィルム株式会社の公式サイト。映像制作・動画編集に加え、英語学習アプリと映像制作・編集支援ツールを開発しています。",
+  description: "デューフィルム株式会社の公式サイト。映像制作・動画編集に加え、英語学習サービス「英語でポン」と映像制作・編集支援ツールを開発しています。",
   icons: {
     icon: "/assets/tab_logo.png",
   },
