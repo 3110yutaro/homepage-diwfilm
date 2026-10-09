@@ -40,8 +40,8 @@ export default function Home() {
       <div className={showContent ? "animate-fade-in" : "opacity-0"}>
         <BackgroundBlobs />
         <Hero showContent={showContent} />
-        <About />
         <DevelopingProducts />
+        <About />
         
         <section id="services" className="py-16 md:py-32 relative overflow-hidden bg-slate-50">
            {/* 背景装飾 */}

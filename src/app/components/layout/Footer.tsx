@@ -21,6 +21,7 @@ export function Footer() {
             <nav className="flex flex-col space-y-2">
               {[
                 { name: "Services", href: "/products" },
+                { name: "開発中のプロダクト", href: "/#in-development" },
                 { name: "About Us", href: "/about" },
                 { name: "Contact", href: "/contact" },
               ].map((item) => (
