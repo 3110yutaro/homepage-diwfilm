@@ -27,4 +27,5 @@ const AutoReplyTemplate = ({
   </div>
 )
 
+
 export default AutoReplyTemplate
