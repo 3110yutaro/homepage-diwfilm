@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Hero } from "@/app/components/sections/Hero";
 import { About } from "@/app/components/sections/About";
+import { DevelopingProducts } from "@/app/components/sections/DevelopingProducts";
 import { ServiceCard } from "@/app/components/sections/ServiceCard";
 import { Contact } from "@/app/components/sections/Contact";
 import { services } from "@/lib/services";
@@ -40,6 +41,7 @@ export default function Home() {
         <BackgroundBlobs />
         <Hero showContent={showContent} />
         <About />
+        <DevelopingProducts />
         
         <section id="services" className="py-16 md:py-32 relative overflow-hidden bg-slate-50">
            {/* 背景装飾 */}
