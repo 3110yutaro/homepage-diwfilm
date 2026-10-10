@@ -26,6 +26,7 @@ export function Header() {
 
   const menuItems = [
     { name: "About", href: "/about", color: "hover:text-pop-blue" },
+    { name: "開発中", href: "/#in-development", color: "hover:text-pop-purple" },
     { name: "Service", href: "/products", color: "hover:text-pop-pink" },
   ]
 

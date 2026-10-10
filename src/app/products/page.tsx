@@ -1,6 +1,7 @@
 "use client";
 
 import { Products } from "@/app/components/sections/Products"
+import { DevelopingProducts } from "@/app/components/sections/DevelopingProducts"
 import { ContactCta } from "@/app/components/sections/ContactCta"
 import { CustomCursor } from "@/app/components/ui/CustomCursor"
 import { motion, useScroll, useSpring } from "framer-motion"
@@ -24,6 +25,7 @@ export default function ProductsPage() {
       />
 
       <Products />
+      <DevelopingProducts />
       <ContactCta />
     </main>
   )

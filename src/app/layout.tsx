@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "DIW FILM inc | デューフィルム株式会社",
-  description: "DIW FILM inc は、映像制作とデジタルコンテンツを手掛ける会社「デューフィルム株式会社」の公式ホームページです。",
+  description: "デューフィルム株式会社の公式サイト。映像制作・動画編集に加え、英語学習サービス「英語でポン」と映像制作・編集支援ツールを開発しています。",
   icons: {
     icon: "/assets/tab_logo.png",
   },
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

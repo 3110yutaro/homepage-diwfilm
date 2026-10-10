@@ -167,7 +167,7 @@ export function About() {
               { label: "資本金", value: "500万円" },
               { label: "所在地", value: "〒107-0062 東京都港区南青山2丁目2番15号 Win Aoyama ビル UCF635" },
               { label: "メールアドレス", value: "info@diwfilm.com" },
-              { label: "事業内容", value: "SNSコンサルティング事業\n映像制作・動画編集事業\n撮影機材レンタル事業" },
+              { label: "事業内容", value: "SNSコンサルティング事業\n映像制作・動画編集事業\n撮影機材レンタル事業\n英語学習サービス・映像制作支援ツールの開発" },
             ].map((item, index) => (
               <div key={index} className="flex flex-col md:flex-row border-b-2 border-black last:border-0 group hover:bg-slate-50 transition-colors">
                 <div className="w-full md:w-1/3 p-4 bg-slate-100 md:bg-transparent border-b-2 md:border-b-0 md:border-r-2 border-black group-hover:bg-pop-yellow/20 transition-colors">
